@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, Button, InputBase } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -24,7 +24,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const { classes } = this.props;
     return (
       <div className={classes.container}>
