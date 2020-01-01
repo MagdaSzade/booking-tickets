@@ -7,5 +7,5 @@ export async function registerUser(user) {
     } catch (err) {
         console.log(err);
     }
-    console.log(response);
+    //console.log(response);
 } 
