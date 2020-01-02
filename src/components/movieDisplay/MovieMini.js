@@ -3,13 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/styles';
 
+import MovieDetails from './MovieDetails';
+
 class MovieMini extends React.Component {
-    
+    state = { showPopup: false };   
+
+    togglePopup(movie) {
+        if (this.state.showPopup === false) {
+            this.setState( { showPopup: movie.name });    
+        } else {
+            this.setState({ showPopup: false });
+        }  
+   }
+
     seanses(movie) {
-        console.log("selected day", this.props.selectedDay);
         for (let i = 0; i < movie.seanses.length; i++) {
-            console.log(movie.seanses[i].day);
-            console.log(movie.seanses[i].day === this.props.selectedDay);
             if (movie.seanses[i].day === this.props.selectedDay) {
                 return (
                      movie.seanses[i].hours.map((hour) => {
@@ -51,11 +59,12 @@ class MovieMini extends React.Component {
                             <div>
                                 {movie.releaseDate}
                             </div>
-                            <button>Więcej...</button>
+                            <button onClick={() => this.togglePopup(movie)}>Więcej...</button>
                         </div>
                         <div>
                             {this.seanses(movie)}
                         </div>
+                        {(this.state.showPopup === movie.name) ? <MovieDetails movie={{movie}} closePopup={this.togglePopup.bind(this)}/> : null }
                     </div>
                 )                
             })

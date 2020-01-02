@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/styles';
 import MovieMini from './MovieMini';
 
 class MoviesConteiner extends React.Component {
-
+ 
     render() {
         const { classes } = this.props;
         return (
