@@ -36,7 +36,7 @@ const validatePassword = (errors, password) => {
 }
 
 const validatePasswords = (errors, password, password2) => {
-    if (password != password2) {
+    if (password !== password2) {
         errors.push({passwords: "Mismatched passwords"});
     }
 }

@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/styles';
 import contentStyles from '../styles/contentStyles';
 import Loggin from './Login';
 import Register from './Register';
+import Movies from './movieDisplay/Movies';
 
 const styles = contentStyles();
 
@@ -19,9 +20,7 @@ class Content extends React.Component {
             return <Register />;
         }
         if (this.props.contentType ==='MOVIES_PAGE') {
-            return (
-                <div>MOVIES_PAGE</div>
-            );
+            return <Movies />;
         }
         if (this.props.contentType ==='CHOOSE_PLACE_PAGE') {
             return (

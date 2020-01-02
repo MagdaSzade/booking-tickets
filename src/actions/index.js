@@ -11,31 +11,45 @@ export const logout = () => {
 };
 
 export const loginPage = () => {
-    return{
+    return {
         type: 'LOGIN_PAGE'
     }
 }
 
 export const registerPage = () => {
-    return{
+    return {
         type: 'REGISTER_PAGE'
     }
 }
 
 export const moviesPage = () => {
-    return{
+    return {
         type: 'MOVIES_PAGE'
     }
 }
 
 export const choosePlacePage = () => {
-    return{
+    return {
         type: 'CHOOSE_PLACE_PAGE'
     }
 }
 
 export const confirmPage = () => {
-    return{
+    return {
         type: 'CONFIRM_PAGE'
+    }
+}
+
+export const movies = (movies) => {
+    return {
+        type: "MOVIES",
+        payload: movies
+    }
+}
+
+export const selectedDay = (day) => {
+    return {
+        type: "SELECTED_DAY",
+        payload: day
     }
 }
