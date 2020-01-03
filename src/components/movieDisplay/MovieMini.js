@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/styles';
 
 import MovieDetails from './MovieDetails';
+import BuyTicketButton from './BuyTicketButton';
 
 class MovieMini extends React.Component {
     state = { showPopup: false };   
@@ -24,7 +25,7 @@ class MovieMini extends React.Component {
                          return (
                              <div>
                                 <div>{hour}</div>
-                                <button>Kup bilet</button>
+                                <BuyTicketButton title={movie.name} day={movie.seanses[i].day} hour={hour}/>
                             </div>
                          )
                      })

@@ -7,6 +7,8 @@ import contentStyles from '../styles/contentStyles';
 import Loggin from './Login';
 import Register from './Register';
 import Movies from './movieDisplay/Movies';
+import UpperDaysBar from './selectDays/UpperDaysBar';
+import ChoosePlace from './places/SelectPlaceConteiner';
 
 const styles = contentStyles();
 
@@ -20,11 +22,19 @@ class Content extends React.Component {
             return <Register />;
         }
         if (this.props.contentType ==='MOVIES_PAGE') {
-            return <Movies />;
+            return (
+                <div>
+                    <UpperDaysBar />
+                    <Movies />;
+                </div>
+            );
         }
         if (this.props.contentType ==='CHOOSE_PLACE_PAGE') {
             return (
-                <div>CHOOSE_PLACE_PAGE</div>
+                <div>
+                    <UpperDaysBar />
+                    <ChoosePlace />
+                </div>
             );
         }
         if (this.props.contentType ==='CONFIRM_PAGE') {

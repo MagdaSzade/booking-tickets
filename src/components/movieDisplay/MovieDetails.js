@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';  
+import { withStyles } from '@material-ui/styles';
+import BuyTicketButton from './BuyTicketButton';  
 
 class MovieDetails extends React.Component {
     seanses() {
+        const { movie } = this.props.movie;
         const { classes } = this.props;
-        return this.props.movie.movie.seanses.map((seans) => {
+        return movie.seanses.map((seans) => {
             return (
                 <div>
                     <div>{seans.day}</div>
@@ -14,7 +16,7 @@ class MovieDetails extends React.Component {
                             return (
                                 <div className={ classes.displayFlex }>
                                     <div>{hour}</div>
-                                    <button>kup bilet</button>
+                                    <BuyTicketButton title={movie.name} day={seans.day} hour={hour}/>
                                 </div>
                             )
                         })}

@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
 import moviesTestData from '../__test__/moviesTestData';
+let today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const yyyy = today.getFullYear();
+today = dd + '.' + mm + '.' + yyyy;
 
 const islogginReducer = (isLoggin = false, action) => {
     switch (action.type) {
@@ -27,10 +32,24 @@ const moviesReducer = (movies = moviesTestData, action) => {
     }
 }
 
-const selectedDayReducer = (day = '01.01.2020', action) => {
+const selectedDayReducer = (day = today, action) => {
     switch (action.type) {
         case 'SELECTED_DAY': return action.payload;
         default: return day;
+    }
+}
+
+const selectedMovieReducer = (movie = null, action) => {
+    switch (action.type) {
+        case 'SELECTED_MOVIE': return action.payload;
+        default: return movie;
+    }
+}
+
+const selectedSeansHourReducer = (seansHour = null, action) => {
+    switch (action.type) {
+        case 'SELECTED_SEANS_HOUR': return action.payload;
+        default: return seansHour;
     }
 }
 
@@ -38,6 +57,8 @@ export default combineReducers({
     isLogin: islogginReducer,
     content: contentPageReducer,
     movies: moviesReducer,
-    selectedDay: selectedDayReducer
+    selectedDay: selectedDayReducer,
+    selectedMovie: selectedMovieReducer,
+    selectedSeansHour: selectedSeansHourReducer
 });
 

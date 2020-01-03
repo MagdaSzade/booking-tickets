@@ -53,3 +53,17 @@ export const selectedDay = (day) => {
         payload: day
     }
 }
+
+export const selectedMovie = (movie) => {
+    return {
+        type: "SELECTED_MOVIE",
+        payload: movie
+    }
+}
+
+export const selectedHour = (seansHour) => {
+    return {
+        type: "SELECTED_SEANS_HOUR",
+        payload: seansHour
+    }
+}
