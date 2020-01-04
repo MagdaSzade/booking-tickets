@@ -1,7 +1,6 @@
 const express = require('express');
 const verify = require('../middleware/verifyToken');
 const MovieCtrl = require('../controllers/movie-ctrl');
-
 const router = express.Router();
 
 router.post('/movie', MovieCtrl.createMovie);
