@@ -1,16 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const Joi = require('@hapi/joi');
 const bcrypt = require('bcrypt');
 const User = require('../models/user-model');
 
+
+
+const schema = Joi.object({
+  username: Joi.string().min(6).max(15).required(),
+  email: Joi.string().min(3).max(200).email().required(),
+  password: Joi.string().min(6).max(15).regex(/^(?=\D*\d)(?=.*?[a-zA-Z]).*[\W_].*$/).required()
+});
+
 router.post('/register', async (req, res) => {
+  if (!req.body.user) return res.status(400).send('Invalid data');
+  const {
+    error
+  } = Joi.validate(req.body.user, schema)
+  if (error) return res.status(400).send(error.details[0].message);
+
   let {
     username,
     email,
     password
   } = req.body.user;
-
 
   const userExists = await User.findOne({
     email: email
@@ -27,8 +41,12 @@ router.post('/register', async (req, res) => {
         password: hash
       });
 
-      const saveUser = await user.save();
-      res.send('User registered with email: ' + email);
+      try {
+        const saveUser = await user.save();
+        res.send('User registered with email: ' + email);
+      } catch (error) {
+        return res.status(400).send(error.message)
+      }
     });
   });
 
