@@ -1,4 +1,4 @@
-import {seans} from "../client/src/__test__/bookingTicketTest";
+//import {seans} from "../client/src/__test__/bookingTicketTest";
 
 const express = require('express');
 const bodyParser = require('body-parser');
