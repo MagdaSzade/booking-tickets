@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Button} from '@material-ui/core';
 import { selectedMovie, selectedDay, selectedHour, choosePlacePage } from '../../actions';
 
 class BuyTickerButton extends React.Component {
@@ -12,7 +13,7 @@ class BuyTickerButton extends React.Component {
 
     render() {
         return (
-            <button onClick={() => this.buyTicket()}>Kup bilet</button>
+            <Button onClick={() => this.buyTicket()}>Kup bilet</Button>
         );
     }
 }

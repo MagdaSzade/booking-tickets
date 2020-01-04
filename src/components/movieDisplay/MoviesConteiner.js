@@ -27,11 +27,11 @@ const mapStateToProps = (state) => {
 const styles = {
     conteiner: {
         margin: 'auto',
-        border: "1px solid blue",
+        background: 'rgba(10, 105, 135, 0.2)',
     }
 }
 MoviesConteiner.propTypes = {
     classes: PropTypes.object.isRequired,
-};
+}
   
 export default connect(mapStateToProps)(withStyles(styles)(MoviesConteiner));

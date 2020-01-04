@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import TextField from '@material-ui/core/TextField';
 import { moviesPage, loginPage, registerPage, logout } from '../actions';
 
 import headerStyles from '../styles/headerStyles';
@@ -28,13 +31,14 @@ class Header extends React.Component {
   }
 
   isLogin() {
+    const { classes } = this.props;
     if (this.props.isLogin) {
       return <Button onClick={() => this.logout()}>LOG OUT</Button>;
     } else {
       return (
         <div>
-          <Button onClick={() => this.loginMe()}>Log in</Button>
-          <Button onClick={() => this.register()}>Register</Button>
+          <Button style={{color:'white', top: '6px', right: '5px'}} onClick={() => this.loginMe()}>Log in</Button>
+          <Button style={{color:'white', top: '6px', right: '5px'}} onClick={() => this.register()}>Register</Button>
         </div>
       )
     }
@@ -45,11 +49,17 @@ class Header extends React.Component {
     return (
       <div className={classes.container}>
         <div>
-          <Button onClick={() => this.movies()}>Repertuar</Button>
-          <Button>Cennik</Button>
+        <IconButton edge="start" className={classes.menuButton} color="inherit">
+            <MenuIcon />
+          </IconButton>
+          <Button className={classes.button} onClick={() => this.movies()}>Repertuar</Button>
+          <Button className={classes.button} >Cennik </Button>
         </div>
         <div>
+        <IconButton className={classes.searchButton} color="inherit">
           <SearchIcon />
+          </IconButton>
+          <TextField style={{color:'white', top: '7px',}} />
         </div>
         <div>
           {this.isLogin()}

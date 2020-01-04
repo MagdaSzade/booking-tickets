@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import BuyTicketButton from './BuyTicketButton';  
+import { Button} from '@material-ui/core';
 
 class MovieDetails extends React.Component {
     seanses() {
@@ -16,7 +17,7 @@ class MovieDetails extends React.Component {
                             return (
                                 <div className={ classes.displayFlex }>
                                     <div>{hour}</div>
-                                    <BuyTicketButton title={movie.name} day={seans.day} hour={hour}/>
+                                    <BuyTicketButton className={classes.button} title={movie.name} day={seans.day} hour={hour}/>
                                 </div>
                             )
                         })}
@@ -45,7 +46,7 @@ class MovieDetails extends React.Component {
                     <div className={ classes.displayFlex }>
                         {this.seanses()}
                     </div> 
-                    <button onClick={this.props.closePopup}>close me</button>  
+                    <Button className={classes.button} onClick={this.props.closePopup}>close me</Button>  
                 </div>  
             </div>  
         );  
@@ -66,21 +67,37 @@ const styles = {
       },  
       inner: {  
         position: 'absolute',  
-        left: '25%',  
-        right: '25%',  
-        top: '25%',  
-        bottom: '25%',  
-        margin: 'auto',  
-        borderRadius: '20px',  
-        background: 'white'  
+        left: '15%',  
+        right: '15%',  
+        top: '15%',  
+        bottom: '15%',  
+        margin: '20px',  
+        padding: '20px 20px',
+        borderRadius: '15px',  
+        background: 'lightgrey',
+        color: '#212121',
+        hight: '100%',
       },
     image: {
         width: '40%',
         hight: 'auto'
     },
     displayFlex: {
-        display: 'flex'
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button: {
+        textAlign: 'center',
+        position: "relative",
+        background: '#006064',
+        borderRadius: 2,
+        boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
+        color: '#FFC53D',
+        height: 30,
+        margin: "5px",
     }
+
 }
 MovieDetails.propTypes = {
     classes: PropTypes.object.isRequired,

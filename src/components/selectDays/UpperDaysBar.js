@@ -48,7 +48,7 @@ class UpperDaysBar extends React.Component {
 
 const styles = {
     calender: {
-        border: "1px solid red",
+        padding: '25px 0px',
         borderRadius: '5px',
         display: 'flex',
         justifyContent: 'space-around',

@@ -16,16 +16,16 @@ class Content extends React.Component {
 
     contentTypeCondition() {
         if (this.props.contentType ==='LOGIN_PAGE') {
-            return <Loggin />;
+            return <Loggin />
         }
         if (this.props.contentType ==='REGISTER_PAGE') {
-            return <Register />;
+            return <Register />
         }
         if (this.props.contentType ==='MOVIES_PAGE') {
             return (
                 <div>
                     <UpperDaysBar />
-                    <Movies />;
+                    <Movies />
                 </div>
             );
         }

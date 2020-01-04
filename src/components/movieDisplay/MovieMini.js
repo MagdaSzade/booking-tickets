@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
 import MovieDetails from './MovieDetails';
@@ -18,6 +19,7 @@ class MovieMini extends React.Component {
    }
 
     seanses(movie) {
+        const { classes } = this.props;
         for (let i = 0; i < movie.seanses.length; i++) {
             if (movie.seanses[i].day === this.props.selectedDay) {
                 return (
@@ -25,7 +27,7 @@ class MovieMini extends React.Component {
                          return (
                              <div>
                                 <div>{hour}</div>
-                                <BuyTicketButton title={movie.name} day={movie.seanses[i].day} hour={hour}/>
+                                <BuyTicketButton className={classes.buttonBuy} title={movie.name} day={movie.seanses[i].day} hour={hour}/>
                             </div>
                          )
                      })
@@ -60,7 +62,7 @@ class MovieMini extends React.Component {
                             <div>
                                 {movie.releaseDate}
                             </div>
-                            <button onClick={() => this.togglePopup(movie)}>Więcej...</button>
+                            <Button className={classes.button} onClick={() => this.togglePopup(movie)}>Więcej...</Button>
                         </div>
                         <div>
                             {this.seanses(movie)}
@@ -75,18 +77,45 @@ class MovieMini extends React.Component {
 
 const styles = {
     movieContent: {
-        width: "100%",
-        border: '2px solid yellow',
+        width: "90%",
+        borderBottom: '4px dashed #FFC53D',
         display: 'flex',
+        margin: '30px',
+        padding: '10px',
     },
     image: {
-        width: '250px',
+        width: '275px',
         height: 'auto',
-        margin: '10px'
+        objectFit: 'contain',
+
     },
     text: {
-        margin: '10px'
-    }
+        margin: '25px',
+        color: '#d8d8d8',
+
+    },
+    button: {
+        textAlign: 'center',
+        position: "absolute",
+        right: '25px',
+        background: '#006064',
+        borderRadius: 2,
+        boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
+        color: '#FFC53D',
+        height: 30,
+        padding: '0 20px',
+        marginTop: '-10px',
+    },
+    buttonBuy: {
+        textAlign: 'center',
+        position: "relative",
+        margin: '10px',
+        background: '#006064',
+        borderRadius: 2,
+        boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
+        color: '#FFC53D',
+        height: 30,
+    },
 }
 
 const mapStateToProps = (state) => {
