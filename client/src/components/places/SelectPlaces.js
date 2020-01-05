@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-
 import { seans } from '../../__test__/bookingTicketTest';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
 
@@ -21,13 +20,13 @@ class SelectPlaces extends React.Component {
         return (
             places.map((row) => {
                 return (
-                    <div className={ classes.grid }>
-                        {row.map((seat) => {
-                            return (
-                                <div>?</div>
-                            )
-                        })}
-                    </div>
+                        <div className={ classes.grid }>
+                            {row.map((seat) => {
+                                return (
+                                    <div className={ classes.seatStyle}>?</div>
+                                )
+                            })}
+                        </div>
                 ) 
             })
         )
@@ -36,13 +35,16 @@ class SelectPlaces extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <div className={ classes.container }>
+                <div>
                 <div className={ classes.screen }>EKRAN</div>
                 {this.seats()}
+                </div>
             </div>
         )
     }
 }
+
 
 SelectPlaces.propTypes = {
     classes: PropTypes.object.isRequired,

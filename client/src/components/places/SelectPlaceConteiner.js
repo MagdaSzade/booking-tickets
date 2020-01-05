@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
 import SelectsPlaces from './SelectPlaces'
+import { Button} from '@material-ui/core';
 
 const styles = seansConteinerStyles();
 
@@ -18,10 +19,11 @@ class SelectPlaceConteiner extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <div>
                 <div>
-                    <button onClick={() => this.back()}>WRÓĆ</button>
+                    <Button className={ classes.button} onClick={() => this.back()}>WRÓĆ</Button>
                 </div>
                 <SelectsPlaces />
             </div>

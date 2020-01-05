@@ -25,9 +25,9 @@ class MovieMini extends React.Component {
                 return (
                      movie.seanses[i].hours.map((hour) => {
                          return (
-                             <div>
+                             <div className={classes.time}>
                                 <div>{hour}</div>
-                                <BuyTicketButton className={classes.buttonBuy} title={movie.name} day={movie.seanses[i].day} hour={hour}/>
+                                <BuyTicketButton  title={movie.name} day={movie.seanses[i].day} hour={hour}/>
                             </div>
                          )
                      })
@@ -35,7 +35,7 @@ class MovieMini extends React.Component {
             }
         }
         return (
-            <div>Dzisiaj nie wyświetlamy</div>
+            <div className={ classes.textND}>Dzisiaj nie wyświetlamy</div>
         )
     }
 
@@ -48,7 +48,7 @@ class MovieMini extends React.Component {
                         <img alt='movie poster' src={movie.imgSrc} className={ classes.image }/>
                         <div className={ classes.text }>
                             <div>
-                                <h1>{movie.name}</h1>
+                                <h1  style={{margin:'0px 0px 15px 15px', color: 'white',}} >{movie.name}</h1>
                             </div>
                             <div>
                                 {movie.genre}
@@ -92,7 +92,12 @@ const styles = {
     text: {
         margin: '25px',
         color: '#d8d8d8',
-
+    },
+    textND: {
+        margin: '30px',
+        color: '#FFC53D',
+        fontWeight: 'bold',
+        fontSize: '20px',
     },
     button: {
         textAlign: 'center',
@@ -106,15 +111,12 @@ const styles = {
         padding: '0 20px',
         marginTop: '-10px',
     },
-    buttonBuy: {
-        textAlign: 'center',
+    time: {
+        alignItems: 'center',
         position: "relative",
-        margin: '10px',
-        background: '#006064',
-        borderRadius: 2,
-        boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
-        color: '#FFC53D',
-        height: 30,
+        margin: '30px',
+        height: 20,
+        display: 'flex',
     },
 }
 
