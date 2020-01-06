@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
+import { movies } from '../../actions';
+import database from '../../api/database';
 import MovieMini from './MovieMini';
 
+
 class MoviesConteiner extends React.Component {
+
+    componentDidMount() {
+
+    }
  
     render() {
         const { classes } = this.props;
@@ -34,4 +41,4 @@ MoviesConteiner.propTypes = {
     classes: PropTypes.object.isRequired,
 }
   
-export default connect(mapStateToProps)(withStyles(styles)(MoviesConteiner));
+export default connect(mapStateToProps, { movies })(withStyles(styles)(MoviesConteiner));

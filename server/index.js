@@ -1,4 +1,4 @@
-import {seans} from "../client/src/__test__/bookingTicketTest";
+const saveTestData = require('./seed/movie-seeder');
 
 const express = require('express');
 const bodyParser = require('body-parser');

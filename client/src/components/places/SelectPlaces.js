@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { seans } from '../../__test__/bookingTicketTest';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
@@ -8,10 +9,8 @@ import  seansConteinerStyles from '../../styles/seansConteinerStyles'
 const styles = seansConteinerStyles();
 
 class SelectPlaces extends React.Component {
-
-    condition(seat) {
-        const { classes } = this.props;
-
+    onSelectSeat(event) {
+        console.log(event.target);
     }
 
     seats() {
@@ -23,8 +22,13 @@ class SelectPlaces extends React.Component {
                 return (
                     <div className={ classes.grid }>
                         {row.map((seat) => {
+                            console.log(seat);
                             return (
-                                <div>?</div>
+                                <div onClick={(event) => this.onSelectSeat(event)}data-booked={seat.isBooked}
+                                data-movie={this.props.selectedMovie}
+                                data-day={this.props.selectedDay}
+                                data-hour={this.props.selectedSeansHour}
+                                data-key={seat.seatMark}>?</div>
                             )
                         })}
                     </div>
@@ -44,8 +48,16 @@ class SelectPlaces extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return ({
+        selectedDay: state.selectedDay,
+        selectedMovie: state.selectedMovie,
+        selectedSeansHour: state.selectedSeansHour
+    });
+}
+
 SelectPlaces.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SelectPlaces);
+export default connect(mapStateToProps)(withStyles(styles)(SelectPlaces));
