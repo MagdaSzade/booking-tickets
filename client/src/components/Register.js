@@ -2,37 +2,61 @@ import React from 'react';
 import { registerValidator } from '../validators/registerDataValidator';
 import { registerUser } from '../api/user';
 
+
+const listStyle = {
+  listStyle: 'none',
+  color: 'red',
+};
 class Register extends React.Component {
+
   state = {
     username: '',
     email: '',
     password: '',
     password2: '',
-    formErrors: {username:'', email: '', password: ''},
+    formErrors: {},
     usernameValid: false,
     emailValid: false,
     passwordValid: false,
     formValid: false
   };
 
-  onFormSubmit(event) {
+  displayErrors = () => {
+    let list = [];
+    let listItem = [];
+    for (let key in this.state.formErrors) {
+      if (this.state.formErrors.hasOwnProperty(key)) {
+        listItem.push(<li>{this.state.formErrors[key]}</li>)
+      }
+    }
+    list.push(<ul style={listStyle}>{listItem}</ul>)
+    return list;
+  }
+
+  onFormSubmit = event => {
     event.preventDefault();
+    loginPage();
     const userData ={
       username: event.target.username.value,
       email: event.target.email.value,
       password: event.target.password.value,
       password2: event.target.password2.value
     }
-    const errors = registerValidator(userData);
-    console.log(errors);
+    let errors = registerValidator(userData);
     if (errors.length === 0) {
       registerUser(userData);
+    } else {
+      errors = Object.assign({}, ...errors);
+      this.setState({formErrors:errors});
     }
   }
-  
+
   render() {
     return(
       <div>
+
+        {this.displayErrors()}
+
         <form onSubmit={this.onFormSubmit}>
             <label htmlFor='username'>Username</label>
             <input
