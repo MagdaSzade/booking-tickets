@@ -1,6 +1,8 @@
 import React from 'react';
 import { registerValidator } from '../validators/registerDataValidator';
 import { registerUser } from '../api/user';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 
 class Register extends React.Component {
   state = {
@@ -31,46 +33,96 @@ class Register extends React.Component {
   }
   
   render() {
+    const { classes } = this.props;
     return(
-      <div>
-        <form onSubmit={this.onFormSubmit}>
-            <label htmlFor='username'>Username</label>
-            <input
+      <div className={classes.conteiner}>
+        <form className={classes.conteiner2} onSubmit={this.onFormSubmit}>
+            <label className={classes.label} htmlFor='username'>Nazwa użytkownika:</label>
+            <input className={classes.input}
               type='text'
               name='username'
               value={this.state.username}
               onChange={e => this.setState({username:e.target.value})}
             />
             <br />
-            <label htmlFor='email'>e-mail</label>
-            <input
+            <label className={classes.label} htmlFor='email'>E-mail:</label>
+            <input className={classes.input}
               type='text'
               name='email'
               value={this.state.email}
               onChange={e => this.setState({email:e.target.value})}
             />
             <br />
-            <label htmlFor='password'>Password</label>
-            <input
+            <label className={classes.label} htmlFor='password'>Hasło:</label>
+            <input className={classes.input}
               type='text'
               name='password'
               value={this.state.password}
               onChange={e => this.setState({password:e.target.value})}
             />
             <br />
-            <label htmlFor='password2'>Confirmpassword</label>
-            <input
+            <label className={classes.label} htmlFor='password2'>Potwierdź hasło:</label>
+            <input className={classes.input}
               type='text'
               name='password2'
               value={this.state.password2}
               onChange={e => this.setState({password2:e.target.value})}
             />
             <br />
-            <input type="submit" value="Submit"></input>
+            <input className={classes.button} type="submit" value="Submit"></input>
         </form>
       </div>
     );
   }
 }
 
-export default Register;
+const styles = {
+  conteiner: {
+      height: '260px',
+      marginTop: '30px',
+      background: 'rgba(10, 105, 135, 0.2)',
+      display: 'flex',
+      justifyContent:'center',
+      alignItems: 'center',
+  },
+  conteiner2: {
+    marginTop: '-40px',
+    position: 'relative',
+
+},
+  button: {
+    textAlign: 'center',
+    position: "absolute",
+    background: '#006064',
+    border: 'none',
+    borderRadius: 2,
+    boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
+    color: '#FFC53D',
+    height: 30,
+    padding: '0 20px',
+    left: '50%',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    marginLeft: '-50px',
+    marginTop: '20px',
+    
+  },
+  label:{
+      marginRight: '15px',
+      marginBottom: '15px',
+  },
+  input:{
+    marginBottom: '15px',
+    background: 'none',
+    border: 'none',
+    borderBottom: '1px solid grey',
+  },
+}
+
+
+Register.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+
+export default withStyles(styles)(Register);
