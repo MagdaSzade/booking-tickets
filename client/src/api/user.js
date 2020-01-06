@@ -11,3 +11,15 @@ export async function registerUser(user) {
     }
     console.log(response.data);
 }
+
+export async function loginUser(user) {
+    let response = {};
+    try {
+        response = await database.post('api/login', {
+            user
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    console.log(response.data);
+}
