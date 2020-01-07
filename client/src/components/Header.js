@@ -7,13 +7,18 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextField from '@material-ui/core/TextField';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import { moviesPage, loginPage, registerPage, logout } from '../actions';
 
 import headerStyles from '../styles/headerStyles';
 
 const styles = headerStyles();
 
+
+
 class Header extends React.Component {
+
   register() {
    this.props.registerPage();
   }
@@ -37,21 +42,18 @@ class Header extends React.Component {
     } else {
       return (
         <div>
-          <Button style={{color:'white', top: '6px', right: '5px'}} onClick={() => this.loginMe()}>Log in</Button>
-          <Button style={{color:'white', top: '6px', right: '5px'}} onClick={() => this.register()}>Register</Button>
+          <Button className={classes.button} onClick={() => this.loginMe()}>Logowanie</Button>
+          <Button className={classes.button} onClick={() => this.register()}>Rejestracja</Button>
         </div>
       )
     }
   }
 
-  render() {
+  sideDrawer() {
     const { classes } = this.props;
     return (
-      <div className={classes.container}>
-        <div>
-        <IconButton edge="start" className={classes.menuButton} color="inherit">
-            <MenuIcon />
-          </IconButton>
+      <div className={classes.sideDrawer} >
+        <div className={classes.box}>
           <Button className={classes.button} onClick={() => this.movies()}>Repertuar</Button>
           <Button className={classes.button} >Cennik </Button>
         </div>
@@ -59,12 +61,39 @@ class Header extends React.Component {
         <IconButton className={classes.searchButton} color="inherit">
           <SearchIcon />
           </IconButton>
-          <TextField style={{color:'white', top: '7px',}} />
+          <TextField className={classes.textField}/>
+        </div>
+        <div className={classes.box}>
+          {this.isLogin()}
+        </div>
+      </div>
+    );
+  };
+
+
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <nav className={classes.container}>
+        <div>
+        <IconButton edge="start" className={classes.menuButton}  color="inherit">
+            <MenuIcon onClick={() => this.sideDrawer()}></MenuIcon>
+          </IconButton>
+          <Button className={classes.button} onClick={() => this.movies()}>Repertuar</Button>
+          <Button className={classes.button} >Cennik </Button>
+        </div>
+        <div className={classes.spacer} ></div>
+        <div>
+        <IconButton className={classes.searchButton} color="inherit">
+          <SearchIcon />
+          </IconButton>
+          <TextField className={classes.textField}/>
         </div>
         <div>
           {this.isLogin()}
         </div>
-      </div>
+      </nav>
     );
   }
 }

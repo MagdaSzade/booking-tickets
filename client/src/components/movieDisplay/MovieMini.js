@@ -4,11 +4,16 @@ import { connect } from 'react-redux';
 import { Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
+import { fetchMovies } from '../../actions';
 import MovieDetails from './MovieDetails';
 import BuyTicketButton from './BuyTicketButton';
 
 class MovieMini extends React.Component {
-    state = { showPopup: false };   
+    state = { showPopup: false };
+    
+    componentDidMount() {
+        this.props.fetchMovies();
+    }
 
     togglePopup(movie) {
         if (this.state.showPopup === false) {
@@ -20,27 +25,30 @@ class MovieMini extends React.Component {
 
     seanses(movie) {
         const { classes } = this.props;
-        for (let i = 0; i < movie.seanses.length; i++) {
-            if (movie.seanses[i].day === this.props.selectedDay) {
-                return (
-                     movie.seanses[i].hours.map((hour) => {
-                         return (
-                             <div>
-                                <div>{hour}</div>
-                                <BuyTicketButton className={classes.buttonBuy} title={movie.name} day={movie.seanses[i].day} hour={hour}/>
-                            </div>
-                         )
-                     })
-                )
+        if (movie.seanses != null) {
+            for (let i = 0; i < movie.seanses.length; i++) {
+                if (movie.seanses[i].day === this.props.selectedDay) {
+                    return (
+                         movie.seanses[i].hour.map((hour) => {
+                             return (
+                                 <div className={classes.time}>
+                                    <div>{hour}</div>
+                                    <BuyTicketButton  title={movie.name} day={movie.seanses [i].day} hour={hour}/>
+                                </div>
+                             )
+                         })
+                    )
+                }
             }
         }
         return (
-            <div>Dzisiaj nie wyświetlamy</div>
+            <div className={ classes.textND}>Dzisiaj nie wyświetlamy</div>
         )
     }
 
     render() {
         const { classes } = this.props;
+        console.log(this.props.movies)
         return (
             this.props.movies.map((movie) => {
                 return(
@@ -48,7 +56,7 @@ class MovieMini extends React.Component {
                         <img alt='movie poster' src={movie.imgSrc} className={ classes.image }/>
                         <div className={ classes.text }>
                             <div>
-                                <h1>{movie.name}</h1>
+                                <h1  style={{margin:'0px 0px 15px 15px', color: 'white',}} >{movie.name}</h1>
                             </div>
                             <div>
                                 {movie.genre}
@@ -92,7 +100,12 @@ const styles = {
     text: {
         margin: '25px',
         color: '#d8d8d8',
-
+    },
+    textND: {
+        margin: '30px',
+        color: '#FFC53D',
+        fontWeight: 'bold',
+        fontSize: '20px',
     },
     button: {
         textAlign: 'center',
@@ -106,20 +119,18 @@ const styles = {
         padding: '0 20px',
         marginTop: '-10px',
     },
-    buttonBuy: {
-        textAlign: 'center',
+    time: {
+        alignItems: 'center',
         position: "relative",
-        margin: '10px',
-        background: '#006064',
-        borderRadius: 2,
-        boxShadow: ' 0 2px 8px 8px rgba(10, 105, 135, .3)',
-        color: '#FFC53D',
-        height: 30,
+        margin: '30px',
+        height: 20,
+        display: 'flex',
     },
 }
 
 const mapStateToProps = (state) => {
     return {
+        movies: state.movies,
         selectedDay: state.selectedDay
     }
 }
@@ -128,4 +139,4 @@ MovieMini.propTypes = {
     classes: PropTypes.object.isRequired,
 };
   
-export default connect(mapStateToProps)(withStyles(styles)(MovieMini));
+export default connect(mapStateToProps, { fetchMovies })(withStyles(styles)(MovieMini));

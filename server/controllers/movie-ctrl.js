@@ -119,20 +119,7 @@ getMovies = async (req, res) => {
     }).catch(err => console.log(err))
 };
 
-getSeanse = async (req, res) => {
-    await Movie.findOne({ _id: req.params.id }, (err, seanse) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
 
-        if (!seanse) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Seanse not found` })
-        }
-        return res.status(200).json({ success: true, data: seanse })
-    }).catch(err => console.log(err))
-};
 
 
 module.exports = {
@@ -140,6 +127,5 @@ module.exports = {
     updateMovie,
     deleteMovie,
     getMovies,
-    getMovieById,
-    getSeanse,
+    getMovieById
 };

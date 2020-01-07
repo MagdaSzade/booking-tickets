@@ -25,9 +25,9 @@ const contentPageReducer = (content = 'MOVIES_PAGE', action) => {
     }
 }
 
-const moviesReducer = (movies = moviesTestData, action) => {
+const moviesReducer = (movies = [], action) => {
     switch (action.type) {
-        case 'MOVIES': return action.payload;
+        case 'MOVIES_LIST': return action.payload;
         default: return movies
     }
 }

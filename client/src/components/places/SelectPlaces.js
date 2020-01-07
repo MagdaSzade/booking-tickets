@@ -40,9 +40,11 @@ class SelectPlaces extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <div className={ classes.container }>
+                <div>
                 <div className={ classes.screen }>EKRAN</div>
                 {this.seats()}
+                </div>
             </div>
         )
     }

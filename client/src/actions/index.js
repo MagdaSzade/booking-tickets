@@ -1,3 +1,14 @@
+import database from '../api/database';
+
+export const fetchMovies = () => async (dispatch) => {
+    const response = await database.get('/api/movies');
+    const movies = response.data.data;
+    dispatch( {
+        type: "MOVIES_LIST",
+        payload: movies
+    })
+}
+
 export const login = () => {
     return {
         type: 'LOG_IN'
@@ -37,13 +48,6 @@ export const choosePlacePage = () => {
 export const confirmPage = () => {
     return {
         type: 'CONFIRM_PAGE'
-    }
-}
-
-export const movies = (movies) => {
-    return {
-        type: "MOVIES",
-        payload: movies
     }
 }
 

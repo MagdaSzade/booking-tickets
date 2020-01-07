@@ -9,15 +9,12 @@ const Movie = new Schema(
         orign: { type: String, required: true },
         time: {type: String, require: true },
         imgSrc:{type:String, required: true},
-        seanses:[{
-            hours: {type: String, required:true},
-            day: {type: String, required: true},
-            seats: [{type: Boolean, default: false}],
-            room:{type:String, required:true}
-        }]
-        
+        seanses: [
+            { day: {type:String},
+            hour: [String] }
+        ]
     },
     { timestamps: true },
-)
+);
 
 module.exports = mongoose.model('movies', Movie);
