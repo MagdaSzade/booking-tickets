@@ -27,7 +27,6 @@ const styles = {
         backgroundPosition: "bottom",
         backgroundSize: "cover",
         boxShadow: '0 0 5px 5px #3A3A3A inset',
-        opacity: '0.50',
     }
 }
 Footer.propTypes = {
