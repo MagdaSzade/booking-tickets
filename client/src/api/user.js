@@ -9,7 +9,7 @@ export async function registerUser(user) {
     } catch (err) {
         console.log(err);
     }
-    console.log(response.data);
+    return response;
 }
 
 export async function loginUser(user) {

@@ -1,15 +1,26 @@
 import React from 'react';
 import { loginValidator } from '../validators/loginDataValidator';
-import { loginUser } from '../api/user';
+import database from '../api/database';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
 class Login extends React.Component {
-    state = {
-        email: '',
-        password: ''
-    };
+  state = {
+      email: '',
+      password: ''
+  };
 
+  loginUser = async (user) => {
+    let response = {};
+    try {
+        response = await database.post('api/login', {
+            user
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    console.log(response.data);
+  }
 
   onFormSubmit(event) {
     event.preventDefault();
@@ -20,7 +31,7 @@ class Login extends React.Component {
     const errors = loginValidator(userData);
     console.log(errors);
     if (errors.length === 0) {
-        loginUser(userData);
+      this.loginUser(userData);
     }
   }
 

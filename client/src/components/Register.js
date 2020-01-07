@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { loginPage } from '../actions';
 import { registerValidator } from '../validators/registerDataValidator';
 import { registerUser } from '../api/user';
 import PropTypes from 'prop-types';
@@ -36,7 +38,7 @@ class Register extends React.Component {
     return list;
   }
 
-  onFormSubmit = event => {
+  onFormSubmit = async event => {
     event.preventDefault();
     const userData ={
       username: event.target.username.value,
@@ -46,7 +48,13 @@ class Register extends React.Component {
     }
     let errors = registerValidator(userData);
     if (errors.length === 0) {
-      registerUser(userData);
+      let response = await registerUser(userData);
+      if (response.data.includes("User registered")) {
+        this.props.loginPage();
+      } else {
+        errors = {error: response.data};
+        this.setState({formErrors: errors});
+      }
     } else {
       errors = Object.assign({}, ...errors);
       this.setState({formErrors:errors});
@@ -141,10 +149,9 @@ const styles = {
   },
 }
 
-
 Register.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 
-export default withStyles(styles)(Register);
+export default connect(null, { loginPage })(withStyles(styles)(Register));

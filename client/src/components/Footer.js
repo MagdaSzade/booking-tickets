@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
@@ -7,15 +6,8 @@ class Footer extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.conteiner}>this is footer</div>
+            <div className={classes.conteiner}> </div>
         );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return { 
-        movies: state.movies, 
-        selectedDay: state.selectedDay
     }
 }
 
@@ -33,4 +25,4 @@ Footer.propTypes = {
     classes: PropTypes.object.isRequired,
 };
   
-export default connect(mapStateToProps)(withStyles(styles)(Footer));
+export default withStyles(styles)(Footer);
