@@ -8,8 +8,8 @@ today = dd + '.' + mm + '.' + yyyy;
 
 const islogginReducer = (isLoggin = false, action) => {
     switch (action.type) {
-        case 'LOG_IN': return true;
-        case 'LOG_OUT': return false;
+        case 'LOG_IN': return {action};
+        case 'LOG_OUT': return null;
         default: return isLoggin;
     }
 }

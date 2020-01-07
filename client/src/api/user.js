@@ -19,7 +19,7 @@ export async function loginUser(user) {
             user
         })
     } catch (err) {
-        console.log(err);
+        return "Invalid email or password";
     }
-    console.log(response.data);
+    return (response.data);
 }

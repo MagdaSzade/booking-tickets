@@ -20,10 +20,6 @@ class Register extends React.Component {
     password: '',
     password2: '',
     formErrors: {},
-    usernameValid: false,
-    emailValid: false,
-    passwordValid: false,
-    formValid: false
   };
 
   displayErrors = () => {
@@ -118,8 +114,7 @@ const styles = {
   conteiner2: {
     marginTop: '-40px',
     position: 'relative',
-
-},
+  },
   button: {
     textAlign: 'center',
     position: "absolute",
@@ -135,7 +130,6 @@ const styles = {
     fontWeight: 'bold',
     marginLeft: '-50px',
     marginTop: '20px',
-
   },
   label:{
       marginRight: '15px',

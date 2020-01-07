@@ -9,9 +9,10 @@ export const fetchMovies = () => async (dispatch) => {
     })
 }
 
-export const login = () => {
+export const login = (token) => {
     return {
-        type: 'LOG_IN'
+        type: 'LOG_IN',
+        payload: token
     }
 };
 
