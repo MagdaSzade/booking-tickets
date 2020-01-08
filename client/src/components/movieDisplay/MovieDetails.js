@@ -10,12 +10,12 @@ class MovieDetails extends React.Component {
         const { classes } = this.props;
         return movie.seanses.map((seans) => {
             return (
-                <div className={ classes.box}>
+                <div key={`${movie._id} ${seans.day}`} className={ classes.box}>
                     <div className={ classes.display} >{seans.day}</div>
                     <div>
                         {seans.hour.map((hour) => {
                             return (
-                                <div className={ classes.displayFlex }>
+                                <div key={`${hour} ${movie.name} ${seans}`} className={ classes.displayFlex }>
                                     <div  >{hour}</div>
                                     <BuyTicketButton className={classes.button} title={movie.name} day={seans.day} hour={hour}/>
                                 </div>

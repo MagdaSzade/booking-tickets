@@ -55,7 +55,6 @@ class Header extends React.Component {
       <div className={classes.sideDrawer} >
         <div className={classes.box}>
           <Button className={classes.button} onClick={() => this.movies()}>Repertuar</Button>
-          <Button className={classes.button} >Cennik </Button>
         </div>
         <div>
         <IconButton className={classes.searchButton} color="inherit">
@@ -81,7 +80,6 @@ class Header extends React.Component {
             <MenuIcon onClick={() => this.sideDrawer()}></MenuIcon>
           </IconButton>
           <Button className={classes.button} onClick={() => this.movies()}>Repertuar</Button>
-          <Button className={classes.button} >Cennik </Button>
         </div>
         <div className={classes.spacer} ></div>
         <div>

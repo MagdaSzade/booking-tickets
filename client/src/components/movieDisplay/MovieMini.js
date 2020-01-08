@@ -29,9 +29,9 @@ class MovieMini extends React.Component {
             for (let i = 0; i < movie.seanses.length; i++) {
                 if (movie.seanses[i].day === this.props.selectedDay) {
                     return (
-                         movie.seanses[i].hour.map((hour) => {
+                         movie.seanses[i].hours.map((hour) => {
                              return (
-                                 <div className={classes.time}>
+                                 <div key={`${hour} ${movie.name} ${movie.seanses[i].day}`} className={classes.time}>
                                     <div>{hour}</div>
                                     <BuyTicketButton  title={movie.name} day={movie.seanses [i].day} hour={hour}/>
                                 </div>

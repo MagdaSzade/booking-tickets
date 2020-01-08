@@ -1,4 +1,16 @@
 const Movie = require('../models/movie-model');
+const createCompleteMovieList = require('../seed/movie-seeder');
+
+
+createMovies = (req, res) => {
+    const movies = createCompleteMovieList();
+    movies.forEach((movie) =>{
+        let movieToSave = new Movie(movie);
+        console.log(movieToSave.seanses[0].hours);  
+        movieToSave = movieToSave.save();
+    });
+    res.send("ok");
+}
 
 createMovie = (req, res) => {
     const body = req.body;
@@ -123,6 +135,7 @@ getMovies = async (req, res) => {
 
 
 module.exports = {
+    createMovies,
     createMovie,
     updateMovie,
     deleteMovie,
