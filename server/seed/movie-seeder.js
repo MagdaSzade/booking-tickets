@@ -53,9 +53,9 @@ function getRandomInt() {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function setDayText() { 
+function setDayText(i) { 
     let seanseDay = new Date()
-    seanseDay.setDate(seanseDay.getDate() + getRandomInt());
+    seanseDay.setDate(seanseDay.getDate() + i);
     const dd = String(seanseDay.getDate()).padStart(2, '0');
     const mm = String(seanseDay.getMonth() + 1).padStart(2, '0');
     const yyyy = seanseDay.getFullYear();
@@ -67,8 +67,8 @@ function setDayText() {
 function createCompleteMovieList() {
     const completedMovieList = movies.map((movie) => {
         const seanses = [];
-        for (let i = 0; i < 3; i++) {
-            day = setDayText();
+        for (let i = 0; i < 5; i++) {
+            day = setDayText(i);
             let hours = [];
             let hoursArray = ['10:00', "11:30", '12:20', '15:30', '17:00', '20:00'];
             let j = getRandomInt();
