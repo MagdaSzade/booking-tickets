@@ -1,13 +1,36 @@
 const Movie = require('../models/movie-model');
+const Seans = require('../models/seanse-model');
 const createCompleteMovieList = require('../seed/movie-seeder');
 
 
 createMovies = (req, res) => {
     const movies = createCompleteMovieList();
-    movies.forEach((movie) =>{
-        let movieToSave = new Movie(movie);
-        console.log(movieToSave.seanses[0].hours);  
-        movieToSave = movieToSave.save();
+    movies.forEach(async (movie) =>{
+        let movieToSave = new Movie(movie);  
+        movieToSave = await movieToSave.save();
+        movieToSave.seanses.forEach((seans) => {
+            console.log()
+            seans.hours.forEach((hour) => {
+                const newSeans = {
+                    movie: movieToSave.name,
+                    day: seans.day,
+                    hour: hour,
+                    seats: [
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false],
+                        [false, false, false, false, false, false, false, false, false, false]],
+                }
+                seansToSave = new Seans(newSeans);
+                seansToSave.save();
+            })
+        })
     });
     res.send("ok");
 }

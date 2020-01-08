@@ -39,4 +39,5 @@ BuyTickerButton.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
+
 export default connect(null, { selectedMovie, selectedDay, selectedHour, choosePlacePage } ) (withStyles(styles)(BuyTickerButton));

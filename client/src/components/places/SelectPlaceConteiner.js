@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 
 import { moviesPage, selectedMovie, selectedHour } from '../../actions'
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
-import SelectsPlaces from './SelectPlaces'
+import SelectPlaces from './SelectPlaces'
 
 const styles = seansConteinerStyles();
 
@@ -25,7 +25,7 @@ class SelectPlaceConteiner extends React.Component {
                 <div>
                     <Button className={ classes.button} onClick={() => this.back()}>WRÓĆ</Button>
                 </div>
-                <SelectsPlaces />
+                <SelectPlaces />
             </div>
         )
     }

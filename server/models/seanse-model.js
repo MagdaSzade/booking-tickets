@@ -3,15 +3,11 @@ const Schema = mongoose.Schema;
 
 const Seanse = new Schema(
     {
-
-            hours: {type: String, required:true},
-            day: {type: String, required: true},
-            seats: [{type: Boolean, default: false}],
-            room:{type:String, required:true},
-            movie:{type:mongoose.Schema.Types.ObjectID, ref:"Movie"}
-
+        movie:{type: String, required: true},
+        day: {type: String, required: true},
+        hour: {type: String, required:true},
+        seats: [[{type: Boolean, default: false}]],
     },
-    { timestamps: true },
 )
 
 module.exports = mongoose.model('seanses', Seanse);

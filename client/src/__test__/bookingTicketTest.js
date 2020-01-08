@@ -14,7 +14,7 @@ function createSeats() {
 
 const seats = createSeats();
 
-export function seans(movieName, day, seansHour) {
+export function seans() {
     return seats;
 }
 
