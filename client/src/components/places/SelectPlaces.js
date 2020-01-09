@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { seans, updateSeans } from '../../__test__/bookingTicketTest';
+import { updateSeans } from '../../__test__/bookingTicketTest';
 import database from '../../api/database';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
 import Message from './Message';
@@ -56,7 +56,7 @@ class SelectPlaces extends React.Component {
         });
         this.setState({showPopup: true});
         this.placesReserved = [];
-        if (response.status = 200) {
+        if (response.status === 200) {
             this.text = "Zarezerwowano bilety";
         } else {
             this.text = "coś się nie udało. Proszę spróbuj ponownie";

@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import { Button} from '@material-ui/core';
-import { selectedMovie, selectedDay, selectedHour, choosePlacePage } from '../../actions';
+import { selectedMovie, selectedDay, selectedHour, choosePlacePage, loginPage } from '../../actions';
 
 class BuyTickerButton extends React.Component {
     buyTicket() {
         this.props.selectedMovie(this.props.title); 
         this.props.selectedDay(this.props.day);
         this.props.selectedHour(this.props.hour);
-        this.props.choosePlacePage();
+        if (this.props.isLogin) {
+            this.props.choosePlacePage();
+        } else {
+            this.props.loginPage();
+        }
     }
 
     render() {
@@ -39,5 +43,10 @@ BuyTickerButton.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => {
+    return {
+        isLogin: state.isLogin
+    }
+};
 
-export default connect(null, { selectedMovie, selectedDay, selectedHour, choosePlacePage } ) (withStyles(styles)(BuyTickerButton));
+export default connect(mapStateToProps, { selectedMovie, selectedDay, selectedHour, choosePlacePage, loginPage } ) (withStyles(styles)(BuyTickerButton));

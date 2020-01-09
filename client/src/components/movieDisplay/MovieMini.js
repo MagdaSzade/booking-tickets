@@ -33,7 +33,7 @@ class MovieMini extends React.Component {
                              return (
                                  <div key={`${hour} ${movie.name} ${movie.seanses[i].day}`} className={classes.time}>
                                     <div>{hour}</div>
-                                    <BuyTicketButton  title={movie.name} day={movie.seanses [i].day} hour={hour}/>
+                                    <BuyTicketButton  title={movie.name} day={movie.seanses[i].day} hour={hour}/>
                                 </div>
                              )
                          })

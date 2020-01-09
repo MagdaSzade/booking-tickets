@@ -39,7 +39,7 @@ class MovieDetails extends React.Component {
         return (  
             <div className={ classes.popup } onClick={(event) => this.close(event)}>  
                 <div className={ classes.inner }> 
-                    <img className={ classes.image } src={movie.imgSrc} /> 
+                    <img className={ classes.image } alt={movie.name} src={movie.imgSrc} /> 
                     <h1>{movie.name}</h1>
                     <h3>{movie.description}</h3>
                     <h4>{movie.releaseDate} / {movie.genre} / {movie.origin} / {movie.time} </h4>

@@ -25,7 +25,7 @@ class Login extends React.Component {
     let listItem = [];
     for (let key in this.state.formErrors) {
       if (this.state.formErrors.hasOwnProperty(key)) {
-        listItem.push(<li>{this.state.formErrors[key]}</li>)
+        listItem.push(<li key={this.state.formErrors[key]}>{this.state.formErrors[key]}</li>)
       }
     }
     list.push(<ul style={listStyle}>{listItem}</ul>)
