@@ -33,7 +33,7 @@ class Login extends React.Component {
         listItem.push(<li key={this.state.formErrors[key]}>{this.state.formErrors[key]}</li>)
       }
     }
-    list.push(<ul style={listStyle}>{listItem}</ul>)
+    list.push(<ul key="list" style={listStyle}>{listItem}</ul>)
     return list;
   }
 
@@ -69,7 +69,7 @@ class Login extends React.Component {
           <div className={classes.conteiner}>
             <form className={classes.conteiner2} onSubmit={this.onFormSubmit}>
                 <label className={classes.label} >E-mail:</label>
-                <input className={classes.input} 
+                <input className={classes.input}
                   type='text'
                   name='email'
                   value={this.state.email}
@@ -77,7 +77,7 @@ class Login extends React.Component {
                 />
                 <br />
                 <label className={classes.label} >Hasło:</label>
-                <input className={classes.input} 
+                <input className={classes.input}
                   type='text'
                   name='password'
                   value={this.state.password}
