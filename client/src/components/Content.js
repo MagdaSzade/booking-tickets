@@ -32,7 +32,6 @@ class Content extends React.Component {
         if (this.props.contentType ==='CHOOSE_PLACE_PAGE') {
             return (
                 <div>
-                    <UpperDaysBar />
                     <ChoosePlace />
                 </div>
             );

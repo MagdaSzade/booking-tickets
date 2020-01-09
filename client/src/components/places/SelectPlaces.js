@@ -3,16 +3,21 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { seans } from '../../__test__/bookingTicketTest';
+import { seans, updateSeans } from '../../__test__/bookingTicketTest';
 import database from '../../api/database';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
 
 const styles = seansConteinerStyles();
 
 class SelectPlaces extends React.Component {
-    state = {
-        places: []
-    };
+    constructor(props) {
+        super(props);
+        this.placesReserved = [];
+        this.state = {
+            places: [],
+        };
+    }
+
 
     componentDidMount() {
         this.fetchData();  
@@ -25,11 +30,18 @@ class SelectPlaces extends React.Component {
             hour: this.props.selectedSeansHour
         } )
         console.log(response.data.data[0].seats);
-        this.setState({places: response.data.data[0].seats})
+        let seats = updateSeans(response.data.data[0].seats);
+        this.setState({places: seats});
     }
 
     onSelectSeat(event) {
-        console.log(event.target);
+        if (event.target.className.includes("placeNotBooked")) {
+            event.target.className = this.props.classes.placeReserved;
+            this.placesReserver = [event.target.getAttribute('data-key'), ...this.placesReserved];
+            console.log(this.placesReserved);
+        } else if (event.target.className.includes("placeReserved")) {
+            event.target.className = this.props.classes.placeNotBooked;
+        }
     }
 
     seats() {
@@ -39,11 +51,11 @@ class SelectPlaces extends React.Component {
                 return (
                     <div key={row[0].seatMark} className={ classes.grid }>
                         {row.map((seat) => {
+                            const seatClass = seat.isBooked ? classes.placeBooked : classes.placeNotBooked;
                             return (
-                                <div onClick={(event) => this.onSelectSeat(event)}data-booked={seat.isBooked}
-                                data-movie={this.props.selectedMovie}
-                                data-day={this.props.selectedDay}
-                                data-hour={this.props.selectedSeansHour}
+                                <div onClick={(event) => this.onSelectSeat(event)} 
+                                className={ seatClass }
+                                data-booked={seat.isBooked}
                                 data-key={seat.seatMark}
                                 key={seat.seatMark}>
                                     {seat.seatMark}
@@ -61,9 +73,10 @@ class SelectPlaces extends React.Component {
         return (
             <div className={ classes.container }>
                 <div>
-                <div className={ classes.screen }>EKRAN</div>
-                {this.seats()}
-                </div>
+                    <div className={ classes.screen }>EKRAN</div>
+                    {this.seats()}
+                    <button>POTWIERDŹ REZERWACJĘ MIEJSC</button>
+                </div>  
             </div>
         )
     }

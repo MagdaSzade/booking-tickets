@@ -24,11 +24,14 @@ function seansConteinerStyles() {
             {
                 border: '3px solid #3A3A3A',
                 padding: '10px',
-                backgroundColor: '#006064',
-                
+                backgroundColor: '#006064',   
             },
             placeNotBooked: {
                 backgroundColor: 'green',
+                border: 'solid 1px black'
+            },
+            placeReserved: {
+                backgroundColor: 'blue',
                 border: 'solid 1px black'
             },
             placeBooked: {
