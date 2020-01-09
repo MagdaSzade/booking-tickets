@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { Button} from '@material-ui/core';
 import { updateSeans } from '../../__test__/bookingTicketTest';
 import database from '../../api/database';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
@@ -103,7 +103,7 @@ class SelectPlaces extends React.Component {
                 <div>
                     <div className={ classes.screen }>EKRAN</div>
                     {this.seats()}
-                    <button onClick={(event) => this.onConfirmPlaces(event)}>POTWIERDŹ REZERWACJĘ MIEJSC</button>
+                    <Button className={ classes.button } onClick={(event) => this.onConfirmPlaces(event)}>POTWIERDŹ REZERWACJĘ MIEJSC</Button>
                     {(this.state.showPopup === true) ? <Message text={this.text} closePopup={this.togglePopup.bind(this)}/> : null }
                 </div>  
             </div>

@@ -9,8 +9,6 @@ import headerStyles from '../styles/headerStyles';
 
 const styles = headerStyles();
 
-
-
 class Header extends React.Component {
 
   register() {
@@ -33,7 +31,7 @@ class Header extends React.Component {
   isLogin() {
     const { classes } = this.props;
     if (this.props.isLogin) {
-      return <Button className={classes.button} onClick={() => this.logout()}>LOG OUT</Button>;
+      return <Button className={classes.button} onClick={() => this.logout()}>Wyloguj</Button>;
     } else {
       return (
         <div>

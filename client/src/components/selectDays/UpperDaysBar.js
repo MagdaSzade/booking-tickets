@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import Day from './Day';
 
+import daysStyles from '../../styles/daysStyles';
+
+const styles = daysStyles();
+
+
 class UpperDaysBar extends React.Component {
 
     setDayText(day) {
@@ -46,15 +51,7 @@ class UpperDaysBar extends React.Component {
     }
 }
 
-const styles = {
-    calender: {
-        padding: '25px 0px',
-        borderRadius: '5px',
-        display: 'flex',
-        justifyContent: 'space-around',
-        fontWeight: 'bold'
-    }
-}
+
 
 UpperDaysBar.propTypes = {
     classes: PropTypes.object.isRequired,

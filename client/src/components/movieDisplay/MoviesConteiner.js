@@ -4,6 +4,9 @@ import { withStyles } from '@material-ui/styles';
 
 import MovieMini from './MovieMini';
 
+import moviesConteinerStyles from '../../styles/moviesConteinerStyles';
+
+const styles = moviesConteinerStyles();
 
 class MoviesConteiner extends React.Component {
  
@@ -14,13 +17,6 @@ class MoviesConteiner extends React.Component {
                 <MovieMini />
             </div>
         )
-    }
-}
-
-const styles = {
-    conteiner: {
-        margin: 'auto',
-        background: 'rgba(10, 105, 135, 0.2)',
     }
 }
 
