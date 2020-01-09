@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { seans, updateSeans } from '../../__test__/bookingTicketTest';
 import database from '../../api/database';
 import  seansConteinerStyles from '../../styles/seansConteinerStyles'
+import Message from './Message';
 
 const styles = seansConteinerStyles();
 
@@ -13,11 +14,13 @@ class SelectPlaces extends React.Component {
     constructor(props) {
         super(props);
         this.placesReserved = [];
+        this.seansId = null;
+        this.text = "";
         this.state = {
             places: [],
+            showPopup: false
         };
     }
-
 
     componentDidMount() {
         this.fetchData();  
@@ -29,20 +32,45 @@ class SelectPlaces extends React.Component {
             day: this.props.selectedDay,
             hour: this.props.selectedSeansHour
         } )
-        console.log(response.data.data[0].seats);
         let seats = updateSeans(response.data.data[0].seats);
+        this.seansId = response.data.data[0]._id;
         this.setState({places: seats});
     }
 
     onSelectSeat(event) {
         if (event.target.className.includes("placeNotBooked")) {
             event.target.className = this.props.classes.placeReserved;
-            this.placesReserver = [event.target.getAttribute('data-key'), ...this.placesReserved];
-            console.log(this.placesReserved);
+            this.placesReserved = [event.target.getAttribute('data-key'), ...this.placesReserved];
         } else if (event.target.className.includes("placeReserved")) {
             event.target.className = this.props.classes.placeNotBooked;
+            this.placesReserved = this.placesReserved.filter((value) => {
+                return value !== event.target.getAttribute('data-key');
+            })
         }
     }
+
+    async onConfirmPlaces(event) {
+        const response = await database.put('/api/seanse/bookPlace', {
+            seansId: this.seansId,
+	        places: this.placesReserved
+        });
+        this.setState({showPopup: true});
+        this.placesReserved = [];
+        if (response.status = 200) {
+            this.text = "Zarezerwowano bilety";
+        } else {
+            this.text = "coś się nie udało. Proszę spróbuj ponownie";
+        }
+        this.fetchData();
+    }
+
+    togglePopup(movie) {
+        if (this.state.showPopup === false) {
+            this.setState( { showPopup: movie.name });    
+        } else {
+            this.setState({ showPopup: false });
+        }  
+   }
 
     seats() {
         const { classes } = this.props;
@@ -75,7 +103,8 @@ class SelectPlaces extends React.Component {
                 <div>
                     <div className={ classes.screen }>EKRAN</div>
                     {this.seats()}
-                    <button>POTWIERDŹ REZERWACJĘ MIEJSC</button>
+                    <button onClick={(event) => this.onConfirmPlaces(event)}>POTWIERDŹ REZERWACJĘ MIEJSC</button>
+                    {(this.state.showPopup === true) ? <Message text={this.text} closePopup={this.togglePopup.bind(this)}/> : null }
                 </div>  
             </div>
         )
