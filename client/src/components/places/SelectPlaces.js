@@ -46,14 +46,18 @@ class SelectPlaces extends React.Component {
   }
 
   onSelectSeat(event) {
-    if (event.target.className.includes('placeNotBooked')) {
+    console.log();
+    console.log();
+    if (event.target.getAttribute("data-reserved") === "false" && event.target.getAttribute("data-booked") === "false") {
       event.target.className = this.props.classes.placeReserved;
+      event.target.setAttribute("data-reserved", "true");
       this.placesReserved = [
         event.target.getAttribute('data-key'),
         ...this.placesReserved
       ];
-    } else if (event.target.className.includes('placeReserved')) {
+    } else if (event.target.getAttribute("data-reserved") === "true") {
       event.target.className = this.props.classes.placeNotBooked;
+      event.target.setAttribute("data-reserved", "false");
       this.placesReserved = this.placesReserved.filter(value => {
         return value !== event.target.getAttribute('data-key');
       });
@@ -104,6 +108,7 @@ class SelectPlaces extends React.Component {
                 onClick={event => this.onSelectSeat(event)}
                 className={seatClass}
                 data-booked={seat.isBooked}
+                data-reserved="false"
                 data-key={seat.seatMark}
                 key={seat.seatMark}
               >
