@@ -16,4 +16,4 @@ Project made during [CodersCamp](https://coderscamp.edu.pl/) course.
 8. Open folder /client
 9. Open another commandline, use npm to install: `npm install`
 10. Once the installation is done, you can run the project: `npm start`
-11. Open http://localhost:9090 to view in the browser.
+11. Open http://localhost:3000/ to view in the browser.
